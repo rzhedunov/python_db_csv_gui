@@ -27,8 +27,7 @@ def close_window():
     sys.exit()
 
 def pbLoadClick(m):
-    #messagebox.showinfo("Сообщение", "Пытаемся прочитать файл")
-    
+    #messagebox.showinfo("Сообщение", "Пытаемся прочитать файл")    
     file1 = open("data.csv", "r")
     while True:
         line = file1.readline()
@@ -38,19 +37,6 @@ def pbLoadClick(m):
         #~ print(c[0],c[1])
         m.insert ("", tk.END, values = [c[0], c[1]])
         
-    
-    
-    #~ import csv	
-    #~ csv_path = "data.csv"
-    #~ with open(csv_path, "r") as f_obj:
-        #~ reader = csv.reader(f_obj)
-        #~ print(reader)
-        #~ for row in reader:
-            #~ print(" ".join(row))
-            #~ print(reader)
-            #~ treeA.insert ("", tk.END, values = ["AAA2", "BBB2"])
-            #~ m.insert ("", tk.END, values = [row[0], row[0]])
-    
     
 def main():
     root = tk.Tk()
@@ -74,10 +60,6 @@ def main():
     
     col1 = Entry(frame)
     col2 = Entry(frame)
-    #col3 = Entry(frame)        
-    # ~ col1.grid(row = 0, column = 0)
-    # ~ col2.grid(row = 0, column = 1)
-    # ~ col3.pack()   
     
     col1.pack()
     col2.pack()    
@@ -89,8 +71,6 @@ def main():
     knopkaSelect.pack()
     knopkaSave.pack()
     knopkaExit.pack()
-        
-    #~ treeA.insert ("", tk.END, values = ["AAA", "BBB"])
     
     root.mainloop ()
     

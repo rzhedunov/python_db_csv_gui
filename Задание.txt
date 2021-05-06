@@ -9,3 +9,31 @@
 3. Сортировка по значениям столбца
 
 4. Выбор строчек, удовлетворяющих условию
+
+
+
+Записи
+    
+    
+    #~ import csv	
+    #~ csv_path = "data.csv"
+    #~ with open(csv_path, "r") as f_obj:
+        #~ reader = csv.reader(f_obj)
+        #~ print(reader)
+        #~ for row in reader:
+            #~ print(" ".join(row))
+            #~ print(reader)
+            #~ treeA.insert ("", tk.END, values = ["AAA2", "BBB2"])
+            #~ m.insert ("", tk.END, values = [row[0], row[0]])
+    
+
+
+    #messagebox.showinfo("Сообщение", "Пытаемся прочитать файл")
+
+
+    #col3 = Entry(frame)        
+    # ~ col1.grid(row = 0, column = 0)
+    # ~ col2.grid(row = 0, column = 1)
+    # ~ col3.pack()   
+
+    #~ treeA.insert ("", tk.END, values = ["AAA", "BBB"])
