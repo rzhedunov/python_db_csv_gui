@@ -51,11 +51,29 @@ def pbDeleteClick(m):
                 messagebox.showinfo("Сообщение", "Строка с "+str(pole1)+" "+str(pole2) +" удалена! Осталось "+str(len(children))+" записей")
                 if len(children)>0:
                     m.selection_set(children[0])
-
-                
     else:
         messagebox.showinfo("Сообщение", "Строка не выделена!")
+
+def pbSortByColNClick(m,n):
+    newlist = []
+    for child in m.get_children():
+        # ~ print(m.item(child)["values"])
+        newlist.append([m.item(child)["values"][0], m.item(child)["values"][1].replace('\n','')])
+    # ~ newlist.append([999,999])
+    newlist.sort(key=lambda i: i[n])
     
+    for i in m.get_children():
+        m.delete(i)
+    
+    for z in newlist:
+        m.insert ("", tk.END, values = [z[0], z[1]])
+    
+    # ~ messagebox.showinfo("Сообщение", "Якобы отсортировали по 1-му столбцу")
+        
+        
+        
+        
+        
 def main():
     root = tk.Tk()
     frame = ttk.Frame(root)    
@@ -69,8 +87,8 @@ def main():
     knopkaLoad = Button(frame, text = "Загрузить", width = 20, command=lambda: pbLoadClick(treeA))
     knopkaLoad.pack()
     knopkaDelete = Button(frame, text = "Удалить", width = 20, command=lambda: pbDeleteClick(treeA))
-    knopkaSort1 = Button(frame, text = "Сортировать1", width = 20)
-    knopkaSort2 = Button(frame, text = "Сортировать2", width = 20)
+    knopkaSort1 = Button(frame, text = "Сортировать1", width = 20, command=lambda: pbSortByColNClick(treeA,0))
+    knopkaSort2 = Button(frame, text = "Сортировать2", width = 20, command=lambda: pbSortByColNClick(treeA,1))
     knopkaSelect = Button(frame, text = "Выбрать по условию", width = 20)
     knopkaSave = Button(frame, text = "Сохранить", width = 20)
     knopkaExit = Button(frame, text = "Выход", width = 20, command=close_window)
