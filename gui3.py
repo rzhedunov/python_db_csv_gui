@@ -39,10 +39,22 @@ def pbLoadClick(m):
         
 def pbAddClick(m, tb1,tb2):
     m.insert ("", tk.END, values = [tb1.get(), tb2.get()])
-    # ~ messagebox.showinfo("Сообщение", "Якобы добавили строчку")
-    # ~ print("Якобы добавили строчку")
 
+def pbDeleteClick(m):
+    if m.selection():
+        for selection in m.selection():
+                item = m.item(selection)
+                pole1, pole2 = item["values"][0:2]
+                selected_item = m.selection()[0] ## get selected item
+                m.delete(selected_item)
+                children = m.get_children() 
+                messagebox.showinfo("Сообщение", "Строка с "+str(pole1)+" "+str(pole2) +" удалена! Осталось "+str(len(children))+" записей")
+                if len(children)>0:
+                    m.selection_set(children[0])
 
+                
+    else:
+        messagebox.showinfo("Сообщение", "Строка не выделена!")
     
 def main():
     root = tk.Tk()
@@ -56,7 +68,7 @@ def main():
     treeA.pack()
     knopkaLoad = Button(frame, text = "Загрузить", width = 20, command=lambda: pbLoadClick(treeA))
     knopkaLoad.pack()
-    knopkaDelete = Button(frame, text = "Удалить", width = 20)
+    knopkaDelete = Button(frame, text = "Удалить", width = 20, command=lambda: pbDeleteClick(treeA))
     knopkaSort1 = Button(frame, text = "Сортировать1", width = 20)
     knopkaSort2 = Button(frame, text = "Сортировать2", width = 20)
     knopkaSelect = Button(frame, text = "Выбрать по условию", width = 20)
