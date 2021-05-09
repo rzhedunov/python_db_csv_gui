@@ -37,6 +37,12 @@ def pbLoadClick(m):
         #~ print(c[0],c[1])
         m.insert ("", tk.END, values = [c[0], c[1]])
         
+def pbAddClick(m, tb1,tb2):
+    m.insert ("", tk.END, values = [tb1.get(), tb2.get()])
+    # ~ messagebox.showinfo("Сообщение", "Якобы добавили строчку")
+    # ~ print("Якобы добавили строчку")
+
+
     
 def main():
     root = tk.Tk()
@@ -50,7 +56,6 @@ def main():
     treeA.pack()
     knopkaLoad = Button(frame, text = "Загрузить", width = 20, command=lambda: pbLoadClick(treeA))
     knopkaLoad.pack()
-    knopkaAdd = Button(frame, text = "Добавить", width = 20)    
     knopkaDelete = Button(frame, text = "Удалить", width = 20)
     knopkaSort1 = Button(frame, text = "Сортировать1", width = 20)
     knopkaSort2 = Button(frame, text = "Сортировать2", width = 20)
@@ -58,13 +63,16 @@ def main():
     knopkaSave = Button(frame, text = "Сохранить", width = 20)
     knopkaExit = Button(frame, text = "Выход", width = 20, command=close_window)
     
-    col1 = Entry(frame)
-    col2 = Entry(frame)
-    
+    col1 = Entry(frame, justify='center')    
+    col1.insert(END, '999')
     col1.pack()
-    col2.pack()    
+    col2 = Entry(frame, justify='center')
+    col2.insert(END, 'new value')
+    col2.pack()
     
-    knopkaAdd.pack()
+    knopkaAdd = Button(frame, text = "Добавить", width = 20, command=lambda: pbAddClick(treeA, col1, col2))    
+    knopkaAdd.pack()    
+    
     knopkaDelete.pack()
     knopkaSort1.pack()
     knopkaSort2.pack()
