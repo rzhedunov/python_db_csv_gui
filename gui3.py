@@ -62,14 +62,11 @@ def pbSortByColNClick(m,n):
         # ~ print(m.item(child)["values"])
         newlist.append([m.item(child)["values"][0], m.item(child)["values"][1].replace('\n','').upper(), m.item(child)["values"][1].replace('\n','')])
     # ~ newlist.append([999,999])
-    newlist.sort(key=lambda i: i[n])
-    
+    newlist.sort(key=lambda i: i[n])    
     for i in m.get_children():
-        m.delete(i)
-    
+        m.delete(i)    
     for z in newlist:
-        m.insert ("", tk.END, values = [z[0], z[2]])
-    
+        m.insert ("", tk.END, values = [z[0], z[2]])    
     # ~ messagebox.showinfo("Сообщение", "Якобы отсортировали по 1-му столбцу")
         
 def pbFilterClick(m, tb1,tb2):
@@ -77,11 +74,9 @@ def pbFilterClick(m, tb1,tb2):
         newlist = []
         for child in m.get_children():
             # ~ print(m.item(child)["values"])
-            newlist.append([m.item(child)["values"][0], m.item(child)["values"][1].replace('\n','').upper(), m.item(child)["values"][1].replace('\n','')])
-        
+            newlist.append([m.item(child)["values"][0], m.item(child)["values"][1].replace('\n','').upper(), m.item(child)["values"][1].replace('\n','')])        
         for i in m.get_children():
-            m.delete(i)
-        
+            m.delete(i)        
         for z in newlist:
             f = 1
             if (tb1.get() != "") and (tb1.get().upper() != str(z[0]).upper()): f = 0
@@ -91,6 +86,18 @@ def pbFilterClick(m, tb1,tb2):
     else:
         messagebox.showinfo("Сообщение", "Условия не заданы!!")
         
+def pbSaveClick(m):
+    file1 = open("data.csv", "w")
+    for child in m.get_children():        
+        line = ""+str(m.item(child)["values"][0])+";"+str(m.item(child)["values"][1].replace("\n","")+"\n")
+        file1.write(line)        
+    file1.close()
+    
+    messagebox.showinfo("Сообщение", "Данные сохранены")        
+
+
+
+
                 
 def main():
     root = tk.Tk()
@@ -108,7 +115,7 @@ def main():
     knopkaSort1 = Button(frame, text = "Сортировать1", width = 20, command=lambda: pbSortByColNClick(treeA,0))
     knopkaSort2 = Button(frame, text = "Сортировать2", width = 20, command=lambda: pbSortByColNClick(treeA,1))
     knopkaSelect = Button(frame, text = "Выбрать по условию", width = 20, command=lambda: pbFilterClick(treeA, col1, col2))
-    knopkaSave = Button(frame, text = "Сохранить", width = 20)
+    knopkaSave = Button(frame, text = "Сохранить", width = 20, command=lambda: pbSaveClick(treeA))
     knopkaExit = Button(frame, text = "Выход", width = 20, command=close_window)
     
     col1 = Entry(frame, justify='center')    
